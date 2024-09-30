@@ -1,0 +1,9 @@
+.categoryCard{
+    @apply shadow-lg rounded-lg p-8 py-12 flex flex-row justify-between items-center cursor-pointer transition duration-300
+}
+
+.categoryCard:hover{
+    background-color: var(--tertiary-color);
+    color: white;
+    scale: 1.01;
+}
