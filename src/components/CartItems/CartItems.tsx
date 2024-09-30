@@ -11,7 +11,8 @@ const CartItems = () => {
     const { user } = useContext(AuthContext);
     const BuyTrue = () => toast.success("Your order is Success", {autoClose: 3000 });
     const [cart, setCart] = useState(
-        JSON.parse(localStorage.getItem("cart") || "[]")
+        (typeof window !== "undefined" ?
+        JSON.parse(localStorage.getItem("cart") || "[]") : [])
     );
     const total = cart.reduce((acc: number, product: IProduct) => acc + product.price, 0);
 
@@ -47,7 +48,7 @@ const CartItems = () => {
     const cartLength = cart.length === 0;
 
     return (
-        <>
+        <div>
             <div className="padding-section mb-20">
                 <h1>Cart</h1>
                 {cartLength ? (
@@ -69,7 +70,7 @@ const CartItems = () => {
                 )}
             </div>
             {!cartLength && (
-                <>
+                <div>
                     <div className="flex align-middle items-center justify-between border-t-[3px] border-black pt-4">
                         <h3>TOTAL</h3>
                         <h3>${total}</h3>
@@ -77,8 +78,8 @@ const CartItems = () => {
                     <div className="flex justify-center pb-20">
                         <button className="flex text-sm px-10 py-[7px] text-white rounded-[20px]
                 cursor-pointer transition-all duration-300 hover:scale-90 bg-tertiary active:scale-105" onClick={handleOrder}>Buy</button>
-                    </div></>)}
-        </>
+                    </div></div>)}
+        </div>
     )
 }
 
